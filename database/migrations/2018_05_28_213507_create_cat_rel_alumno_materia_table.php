@@ -16,7 +16,7 @@ class CreateCatRelAlumnoMateriaTable extends Migration
         Schema::create('cat_rel_alumno_materia', function (Blueprint $table) {
             $table->integer('iCodigoAlumno')->unsigned()->comment('Código del alumno');
             $table->string('vchCodigoMateria', 5)->comment('Código de la materia');
-            $table->float('fCalificacion')->comment('Calificación del alumno en la materia');
+            $table->float('fCalificacion')->nullable($value = true)->comment('Calificación del alumno en la materia');
             $table->index('iCodigoAlumno');
             $table->index('vchCodigoMateria');
         });

@@ -9,14 +9,14 @@
             <img class="card-img-top" src="{{ asset('media/lista-alumnos.jpg') }}" alt="Card image" height="160">
             <div class="card-body">
                 <p class="card-text">Vea y gestione la lista de alumnos. Realice búsquedas por nombre y apellidos.</p>
-                <a href="#" class="btn btn-primary">Ver lista de alumnos</a>
+                <a href="{{ route('alumnos.index') }}" class="btn btn-primary">Ver lista de alumnos</a>
             </div>
         </div>
         <div class="card bg-light">
             <img class="card-img-top" src="{{ asset('media/lista-materias.jpg') }}" alt="Card image" height="160">
             <div class="card-body">
                 <p class="card-text">Vea las materias a las cuales los alumnos pueden inscribirse. Gestione las inscripciones.</p>
-                <a href="#" class="btn btn-primary">Ver lista de materias</a>
+                <a href="{{ route('materias.index') }}" class="btn btn-primary">Ver lista de materias</a>
             </div>
         </div>
         <div class="card bg-light">

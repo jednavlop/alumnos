@@ -94,4 +94,12 @@ class Alumno extends Model
 
     }
 
+    /**
+     * Especificamos una relación One-To-Many con las materias inscritas.
+     */
+    public function materiasInscritas()
+    {
+        return $this->hasMany('App\Inscripcion', 'iCodigoAlumno', 'iCodigoAlumno');
+    }
+
 }

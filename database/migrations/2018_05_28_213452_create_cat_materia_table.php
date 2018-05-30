@@ -15,7 +15,7 @@ class CreateCatMateriaTable extends Migration
     {
         Schema::create('cat_materia', function (Blueprint $table) {
             $table->string('vchCodigoMateria', 5)->comment('Código de la materia');
-            $table->string('vchMateria', 30)->comment('Nombre de la materia');
+            $table->string('vchMateria', 50)->comment('Nombre de la materia');
             $table->timestamps();
             $table->primary('vchCodigoMateria');
         });

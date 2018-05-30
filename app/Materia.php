@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Materia extends Model
@@ -30,5 +31,51 @@ class Materia extends Model
      * Indica las propiedades que se podrán editar por el usuario.
      */
     protected $fillable = ['vchCodigoMateria', 'vchMateria'];
+
+
+    /**
+     * Personaliza la búsqueda de materias conforme a los filtros indicados por el usuario.
+     * 
+     * @param string $buscar
+     * @param string $orden
+     * 
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
+    public static function buscarMaterias($buscar, $orden) {
+
+        // Realizaremos una consulta de materias con Eloquent.
+        // Utilizamos un query builder para modificar la consulta según los parámetros del usuario.
+        $consulta = DB::table('cat_materia');
+
+        // Aplicamos el filtro indicado, pudiendo ser al código o al nombre.
+        if ($buscar != null) {
+            $consulta->where(function($query) use ($buscar) {
+                $query->where('vchCodigoMateria', $buscar)
+                    ->orWhere('vchMateria', 'like', '%'.$buscar.'%');
+            });
+        }
+
+        // Ordenamos según lo indicado por el usuario.
+        switch ($orden) {
+            case 'nombre_desc':
+                $consulta->orderBy('vchMateria', 'desc');
+                break;
+            case 'nombre':
+                $consulta->orderBy('vchMateria', 'asc');
+                break;
+            case 'codigo_desc':
+                $consulta->orderBy('vchCodigoMateria', 'desc');
+                break;
+            case 'codigo':
+            default:
+                $consulta->orderBy('vchCodigoMateria', 'asc');
+                break;
+        }
+
+        // Obtenemos el set de datos mediante la paginación integrada de Laravel.
+        // Personalizamos el tamaño de página a 10.
+        return $consulta->paginate(10);
+
+    }
 
 }

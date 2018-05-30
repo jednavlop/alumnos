@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CatAlumnoTableSeeder::class);
+        $this->call(CatMateriasTableSeeder::class);
     }
 }

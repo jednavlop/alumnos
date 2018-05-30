@@ -1,15 +1,12 @@
 @extends('layouts.app')
+@section('titulo')
+    Lista de alumnos
+@endsection
 @section('contenido')
-    
     @if(count($alumnos) == 0)
         <div class="jumbotron">
             <h1 class="display-4">Nada por aqu&iacute;</h1>
             <p class="lead">No hay ning&uacute;n usuario regitrado en el sistema.</p>
-            <hr class="my-4">
-            <p>Puede ir al formulario de creaci&oacute;n de usuario dando clic en el siguiente bot&oacute;n:</p>
-            <p class="lead">
-                <a href="" class="btn btn-primary btn-lg" role="button"></a>
-            </p>
         </div>
     @else
         <div class="row">
@@ -112,7 +109,7 @@
                                 </td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Ir a la boleta de calificaciones">Boleta</a>
-                                    <a href="#" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Inscribir a una materia">Incribiir</a>
+                                    <a href="{{ route('inscripcion_formulario', ['alumno' => $alumno->iCodigoAlumno]) }}" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Inscribir a una materia">Incribiir</a>
                                     <a href="#" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Capturar calificaciones">Calificar</a>
                                 </td>
                             </tr>

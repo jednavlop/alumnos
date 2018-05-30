@@ -33,7 +33,9 @@ class CreateAlumnosMateriasRelation extends Migration
      */
     public function down()
     {
-        $table->dropForeign('cat_rel_alumno_materia_iCodigoAlumno_foreign');
-        $table->dropForeign('cat_rel_alumno_materia_vchCodigoMateria_foreign');
+        Schema::table('cat_rel_alumno_materia', function (Blueprint $table) {
+            $table->dropForeign('cat_rel_alumno_materia_iCodigoAlumno_foreign');
+            $table->dropForeign('cat_rel_alumno_materia_vchCodigoMateria_foreign');
+        });
     }
 }
