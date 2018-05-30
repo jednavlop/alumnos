@@ -76,7 +76,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-success float-right" type="submit">Guardar calificaciones</button>
+                        <a href="{{ route('boleta_index', ['alumno' => $alumno->iCodigoAlumno]) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" type="button" title="Ir a la boleta de calificaciones">Boleta</a>
+                        <button class="btn btn-success float-right" type="submit" data-toggle="tooltip" data-placement="top" title="Guarda las calificaciones">Guardar calificaciones</button>
                     </div>
                 </div>
             </form>
