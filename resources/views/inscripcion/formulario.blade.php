@@ -3,6 +3,20 @@
     Inscribir alumno
 @endsection
 @section('contenido')
+    @if ($errors->any())
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    <h4>Ups! Han ocurrido algunos errores. Verifique la información e inténtelo de nuevo.</h4>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
     <form method="POST" action="{{ route('inscripcion_registro') }}">
         @csrf
         <div class="row mb-4">

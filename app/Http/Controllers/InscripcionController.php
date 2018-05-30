@@ -32,6 +32,10 @@ class InscripcionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function registrar(Request $request) {
+        $request->validate([
+            'materia' => 'required|string|max:5|exists:cat_materia,vchCodigoMateria',
+            'alumno'  => 'required|integer|exists:cat_alumno,iCodigoAlumno'
+        ]);
 
         $materia = $request->input('materia');
         $alumno =  $request->input('alumno');
