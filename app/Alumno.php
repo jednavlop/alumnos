@@ -16,7 +16,7 @@ class Alumno extends Model
     /**
      * Define el nombre de la llave.
      */
-    protected $primaryKey = 'cat_alumno';
+    protected $primaryKey = 'iCodigoAlumno';
 
     /**
      * Indicamos a Eloquent que nuestra llave es tipo string.
@@ -100,6 +100,17 @@ class Alumno extends Model
     public function materiasInscritas()
     {
         return $this->hasMany('App\Inscripcion', 'iCodigoAlumno', 'iCodigoAlumno');
+    }
+
+    /**
+     * Devuelve la lista de materias a las cuales el alumno se inscribió.
+     */
+    public static function listarInscritas($alumno) {
+        return Alumno::join('cat_rel_alumno_materia', function($join) {
+            $join->on('cat_alumno.iCodigoAlumno', '=', 'cat_rel_alumno_materia.iCodigoAlumno');
+        })->join('cat_materia', function($join) {
+            $join->on('cat_materia.vchCodigoMateria', '=', 'cat_rel_alumno_materia.vchCodigoMateria');
+        })->where('cat_alumno.iCodigoAlumno', $alumno)->get(['cat_materia.vchCodigoMateria', 'cat_materia.vchMateria']);
     }
 
 }

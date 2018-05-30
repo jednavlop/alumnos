@@ -108,9 +108,9 @@
                                     {{ $alumno->dtFechaNac }}
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Ir a la boleta de calificaciones">Boleta</a>
-                                    <a href="{{ route('inscripcion_formulario', ['alumno' => $alumno->iCodigoAlumno]) }}" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Inscribir a una materia">Incribiir</a>
-                                    <a href="#" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Capturar calificaciones">Calificar</a>
+                                    <a href="{{ route('boleta_index', ['alumno' => $alumno->iCodigoAlumno]) }}" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Ir a la boleta de calificaciones">Boleta</a>
+                                    <a href="{{ route('inscripcion_index', ['alumno' => $alumno->iCodigoAlumno]) }}" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Inscribir a una materia">Incribiir</a>
+                                    <a href="{{ route('calificacion_index', ['alumno' => $alumno->iCodigoAlumno]) }}" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Capturar calificaciones">Calificar</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -125,8 +125,10 @@
         </div>
     @endif
 @endsection
+@section('js')
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
+@endsection

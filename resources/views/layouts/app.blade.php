@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Escuela - @yield('titulo')</title>
-        <link rel="stylesheet" href="css/app.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="stylesheet" href="css/app.css" />
         <script src="js/app.js"></script>
     </head>
     <body>
@@ -18,15 +19,15 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Alumnos</a>
                         <div class="dropdown-menu">
                             <a href="{{ route('alumnos.index') }}" class="dropdown-item">Lista de alumnos</a>
-                            <a href="#" class="dropdown-item">Boleta de calificaciones</a>
-                            <a href="#" class="dropdown-item">Captura de calificaciones</a>
+                            <a href="{{ route('boleta_index')  }}" class="dropdown-item">Boleta de calificaciones</a>
+                            <a href="{{ route('calificacion_index')  }}" class="dropdown-item">Captura de calificaciones</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Materias</a>
                         <div class="dropdown-menu">
                             <a href="{{ route('materias.index') }}" class="dropdown-item">Lista de materias</a>
-                            <a href="{{ route('inscripcion_formulario') }}" class="dropdown-item">Módulo de inscripción</a>
+                            <a href="{{ route('inscripcion_index') }}" class="dropdown-item">Módulo de inscripción</a>
                         </div>
                     </li>
                 </ul>
@@ -36,5 +37,10 @@
             @yield('contenido')
         </div>
         @yield('js')
+        <footer class="footer">
+        <div class="container">
+            <span class="text-muted">MIPC - Comunicaciones</span>
+        </div>
+        </footer>
     </body>
 </html>

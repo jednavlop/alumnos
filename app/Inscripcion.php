@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Inscripcion extends Model
@@ -12,7 +13,7 @@ class Inscripcion extends Model
     protected $table = 'cat_rel_alumno_materia';
 
     /**
-     * Define que no tenemos una llave primaria.
+     * Define que no tenemos llave primaria.
      */
     protected $primaryKey = null;
 
@@ -38,7 +39,6 @@ class Inscripcion extends Model
         return $this->belongsTo('App\Alumno', 'iCodigoAlumno', 'iCodigoAlumno');
     }
 
-
     /**
      * Verifica si un alumno ha sido registrado antes a una materia.
      */
@@ -47,6 +47,26 @@ class Inscripcion extends Model
             ['iCodigoAlumno', '=', $alumno],
             ['vchCodigoMateria', '=', $materia]
         ])->count() > 0;
+    }
+
+    /**
+     * Elimina la inscripción de un alumno a una materia.
+     */
+    public static function eliminarRelacion($alumno, $materia) {
+        return Inscripcion::where([
+            ['iCodigoAlumno', '=', $alumno],
+            ['vchCodigoMateria', '=', $materia]
+        ])->delete();
+    }
+
+    /**
+     * Actualiza el registro para guardar la calificación.
+     */
+    public static function actualizarCalificacion($alumno, $materia, $calificacion) {
+        DB::table('cat_rel_alumno_materia')->where([
+            ['iCodigoAlumno', '=', $alumno],
+            ['vchCodigoMateria', '=', $materia]
+        ])->update(['fCalificacion' => $calificacion]);
     }
 
 }

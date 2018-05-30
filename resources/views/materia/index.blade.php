@@ -61,7 +61,6 @@
                                     @endif
                                 </span>
                             </th>
-                            <th>Accesos directos</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,9 +71,6 @@
                                 </td>
                                 <td>
                                     {{ $materia->vchMateria }}
-                                </td>
-                                <td>
-                                    <a href="{{ route('inscripcion_formulario', ['materia' => $materia->vchCodigoMateria]) }}" class="btn btn-sm btn-link" data-toggle="tooltip" data-placement="top" type="button" title="Inscribir un alumno">Inscribir alumnos</a>
                                 </td>
                             </tr>
                         @endforeach

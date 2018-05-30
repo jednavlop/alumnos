@@ -78,4 +78,16 @@ class Materia extends Model
 
     }
 
+    /**
+     * Lista el catálogo de materias disponible para un alumno restando las ya inscritas por el mismo.
+     */
+    public static function listarDisponibles($alumno) {
+        return Materia::leftJoin('cat_rel_alumno_materia', function($join) use ($alumno) {
+            $join->on('cat_materia.vchCodigoMateria', '=', 'cat_rel_alumno_materia.vchCodigoMateria');
+            $join->on(DB::raw($alumno), '=', 'cat_rel_alumno_materia.iCodigoAlumno');
+        })->where([
+            ['cat_rel_alumno_materia.vchCodigoMateria', '=', null]
+        ])->get(['cat_materia.vchCodigoMateria', 'cat_materia.vchMateria']);
+    }
+
 }
